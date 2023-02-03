@@ -1,26 +1,37 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <v-app>
+    <v-main>
+      <TodoPage :selectedTodoList="selectedTodoList"/>
+      <TodoList @addSelectedTodo="addTodoItem"/>
+      <p class="footer">Task board by Neha Shivhare</p>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TodoPage from './components/TodoPage.vue'
+import TodoList from './components/TodoList.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TodoList,
+    TodoPage,
+  },
+  data: () => ({
+    selectedTodoList:[]
+  }),
+  methods:{
+    addTodoItem(todoItem){
+      this.selectedTodoList.push(todoItem.todo);
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style scoped>
+.footer{
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-size: 21px;
+  font-weight: 600;
 }
-</style>
+</style>>
